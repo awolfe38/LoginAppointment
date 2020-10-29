@@ -20,6 +20,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import utils.DBConnection;
+import utils.DBQuery;
+import java.sql.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 
 /**
  * FXML Controller class
@@ -33,7 +37,7 @@ public class LoginMenuController implements Initializable {
     @FXML
     private TextField userTxt;
     @FXML
-    private TextField passTxt;
+    private PasswordField passTxt;
     @FXML
     private Label usernameLbl;
     @FXML
@@ -49,11 +53,46 @@ public class LoginMenuController implements Initializable {
     private Button exitBtn;
     
     @FXML
-    private void onActionLogin(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/UserMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+    private void onActionLogin(ActionEvent event) throws SQLException, IOException {
+        String username = userTxt.getText();
+        String password = passTxt.getText();
+
+        //try {
+            Connection conn = DBConnection.getConnection();
+            String selectStatement = "SELECT * FROM users WHERE User_Name=? AND Password=?";
+
+            DBQuery.setPreparedStatement(conn, selectStatement);
+            PreparedStatement ps = DBQuery.getPreparedStatement();
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+        ps.execute();
+
+        ResultSet rs = ps.getResultSet();
+        if (rs.next()) {
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/view/UserMenu.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Error");
+            alert.setContentText("Wrong username or password");
+            if (!(Locale.getDefault().getLanguage().equals("en"))) {
+                ResourceBundle resb = ResourceBundle.getBundle("resources/Nat", Locale.getDefault());
+                if (Locale.getDefault().getLanguage().equals("fr")) {
+                    alert.setTitle(resb.getString("loginerrortitle"));
+                    alert.setContentText(resb.getString("loginerror"));
+                }
+            }
+            alert.showAndWait();
+
+            }
+        //} //catch (Exception e) {
+
+          //  System.out.println(e.getMessage());
+       // }
     }
 
     @FXML
@@ -76,7 +115,6 @@ public class LoginMenuController implements Initializable {
                 loginBtn.setText(resb.getString("Login"));
                 exitBtn.setText(resb.getString("Exit"));
                 locationLbl.setText(resb.getString("Location") + ":");
-                
             }
         }
 
