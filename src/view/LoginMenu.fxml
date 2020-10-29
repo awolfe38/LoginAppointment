@@ -9,16 +9,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.LoginMenuController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginMenuController">
    <children>
-      <VBox layoutX="120.0" prefHeight="600.0" prefWidth="260.0">
+      <VBox layoutX="100.0" prefHeight="600.0" prefWidth="300.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="260.0">
                <children>
-                  <Label prefHeight="100.0" prefWidth="100.0" text="Username:">
+                  <Label fx:id="usernameLbl" prefHeight="100.0" prefWidth="150.0" text="Username:">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
                   <TextField fx:id="userTxt" prefHeight="60.0" prefWidth="150.0">
@@ -33,9 +32,9 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="260.0">
                <children>
-                  <Label prefHeight="100.0" prefWidth="100.0" text="Password:">
+                  <Label fx:id="passwordLbl" prefHeight="100.0" prefWidth="150.0" text="Password:">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
                   <TextField fx:id="passTxt" prefHeight="60.0" prefWidth="150.0">
@@ -47,7 +46,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="260.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onActionLogin" prefHeight="50.0" prefWidth="80.0" text="Login">
+                  <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#onActionLogin" prefHeight="50.0" prefWidth="100.0" text="Login">
                      <HBox.margin>
                         <Insets left="40.0" top="25.0" />
                      </HBox.margin>
@@ -55,7 +54,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="30.0" layoutY="35.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="50.0" prefWidth="80.0" text="Exit">
+                  <Button fx:id="exitBtn" layoutX="30.0" layoutY="35.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="50.0" prefWidth="100.0" text="Exit">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -65,14 +64,20 @@
                   </Button>
                </children>
             </HBox>
-            <Label fx:id="locLbl" alignment="CENTER" prefHeight="100.0" prefWidth="260.0" text="Location of User">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Label fx:id="locationLbl" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="150.0" text="Location:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="locLbl" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="150.0" text="Location">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

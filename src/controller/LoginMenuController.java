@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,16 +35,19 @@ public class LoginMenuController implements Initializable {
     @FXML
     private TextField passTxt;
     @FXML
+    private Label usernameLbl;
+    @FXML
+    private Label passwordLbl;
+    @FXML
     private Label locLbl;
+    @FXML
+    private Label locationLbl;
+    @FXML
+    private Button loginBtn;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
+    @FXML
+    private Button exitBtn;
+    
     @FXML
     private void onActionLogin(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -57,5 +61,28 @@ public class LoginMenuController implements Initializable {
         DBConnection.closeConnection();
         System.exit(0);
     }
-    
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        if (!(Locale.getDefault().getLanguage().equals("en"))) {
+            ResourceBundle resb = ResourceBundle.getBundle("resources/Nat", Locale.getDefault());
+            if (Locale.getDefault().getLanguage().equals("fr")) {
+                usernameLbl.setText(resb.getString("Username") + ":");
+                passwordLbl.setText(resb.getString("Password") + ":");
+                loginBtn.setText(resb.getString("Login"));
+                exitBtn.setText(resb.getString("Exit"));
+                locationLbl.setText(resb.getString("Location") + ":");
+                
+            }
+        }
+
+        locLbl.setText(Locale.getDefault().getDisplayCountry());
+
+    }
+
+
 }
