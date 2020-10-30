@@ -53,11 +53,11 @@ public class LoginMenuController implements Initializable {
     private Button exitBtn;
     
     @FXML
-    private void onActionLogin(ActionEvent event) throws SQLException, IOException {
+    private void onActionLogin(ActionEvent event) {
         String username = userTxt.getText();
         String password = passTxt.getText();
 
-        //try {
+        try {
             Connection conn = DBConnection.getConnection();
             String selectStatement = "SELECT * FROM users WHERE User_Name=? AND Password=?";
 
@@ -74,6 +74,7 @@ public class LoginMenuController implements Initializable {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/UserMenu.fxml"));
             stage.setScene(new Scene(scene));
+            stage.setTitle("Customers");
             stage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -89,10 +90,10 @@ public class LoginMenuController implements Initializable {
             alert.showAndWait();
 
             }
-        //} //catch (Exception e) {
+        } catch (Exception e) {
 
-          //  System.out.println(e.getMessage());
-       // }
+            System.out.println(e.getLocalizedMessage());
+        }
     }
 
     @FXML

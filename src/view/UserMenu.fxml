@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserMenuController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.UserMenuController">
+   <children>
+      <TableView fx:id="customerTableView" layoutX="45.0" layoutY="150.0" prefHeight="300.0" prefWidth="550.0">
+        <columns>
+          <TableColumn fx:id="custIdCol" minWidth="-1.0" prefWidth="60.0" text="ID" />
+            <TableColumn fx:id="custNameCol" minWidth="-1.0" prefWidth="120.0" text="Name" />
+          <TableColumn fx:id="custAddressCol" prefWidth="190.0" text="Address" />
+            <TableColumn fx:id="custPostCol" minWidth="-1.0" text="Post Code" />
+            <TableColumn fx:id="custPhoneCol" prefWidth="100.0" text="Phone Number" />
+        </columns>
+      </TableView>
+      <HBox layoutX="45.0" layoutY="465.0" prefHeight="100.0" prefWidth="500.0" spacing="30.0">
+         <children>
+            <Button fx:id="addCustBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Add" />
+            <Button fx:id="updateCustBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Update" />
+            <Button fx:id="deleteCustBtn" layoutX="90.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Delete" />
+            <Button fx:id="fullCustBtn" layoutX="170.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Full Customer List" />
+         </children>
+         <padding>
+            <Insets left="25.0" />
+         </padding>
+      </HBox>
+   </children>
 </AnchorPane>
