@@ -20,8 +20,8 @@ public class DBConnection {
         private static String pass = "53688979306";
         
         private static Connection conn = null;
-    
-    
+        
+
     public static Connection startConnection() {
          try {
         Class.forName("com.mysql.cj.jdbc.Driver");

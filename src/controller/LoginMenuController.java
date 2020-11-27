@@ -72,7 +72,7 @@ public class LoginMenuController implements Initializable {
         ResultSet rs = ps.getResultSet();
         if (rs.next()) {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            scene = FXMLLoader.load(getClass().getResource("/view/UserMenu.fxml"));
+            scene = FXMLLoader.load(getClass().getResource("/view/FullCustomerList.fxml"));
             stage.setScene(new Scene(scene));
             stage.setTitle("Customers");
             stage.show();
